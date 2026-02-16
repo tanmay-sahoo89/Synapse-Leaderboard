@@ -20,3 +20,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Secret files - Never commit these!
+leaderboard-sheets-sync-*.json
+*-credentials.json
+*-service-account.json
+google-credentials.json
