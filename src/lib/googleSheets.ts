@@ -1,15 +1,16 @@
 export interface LeaderboardEntry {
   id?: string;
-  uid: string;
+  uid?: string;
   rank?: number;
   previous_rank?: number;
-  name: string;
+  teamName: string;
   score: number;
   maxPoints: number;
   percentage: number;
   status: string;
   avatar_url?: string;
   department?: string;
+  time_taken?: number | null;
 }
 
 export class GoogleSheetsService {

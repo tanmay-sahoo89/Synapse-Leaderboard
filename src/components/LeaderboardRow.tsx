@@ -19,21 +19,22 @@ export default function LeaderboardRow({
   const getRankBadge = (rank: number) => {
     if (rank <= 3) {
       const colors = {
-        1: "bg-gradient-to-br from-[#FFD700] to-[#FFA500] text-white shadow-lg",
-        2: "bg-gradient-to-br from-[#C0C0C0] to-[#A8A8A8] text-white shadow-lg",
-        3: "bg-gradient-to-br from-[#CD7F32] to-[#B8722A] text-white shadow-lg",
+        1: "bg-gradient-to-br from-[#ffd700] to-[#ffb800] text-white shadow-lg",
+        2: "bg-gradient-to-br from-[#c0c0c0] to-[#a8a8a8] text-white shadow-lg",
+        3: "bg-gradient-to-br from-[#ff6b35] to-[#ff8c00] text-white shadow-lg",
       };
       return colors[rank as keyof typeof colors];
     }
-    return "bg-[#2D2D44] text-[#30CDB7] border-2 border-[#498099]";
+    return "bg-navy-deep text-cyan-neon border-2 border-cyan-neon glow-cyan";
   };
 
   const getStatusBadge = () => {
     const statusStyles = {
-      active: "bg-[#00C896] text-white",
-      completed: "bg-[#30CDB7] text-white",
-      "at risk": "bg-[#FF8C42] text-white",
-      failed: "bg-[#FF4757] text-white",
+      active: "bg-cyan-neon/20 text-cyan-neon border border-cyan-neon/50",
+      completed: "bg-cyan-soft/20 text-cyan-soft border border-cyan-soft/50",
+      "at risk":
+        "bg-orange-neon/20 text-orange-neon border border-orange-neon/50",
+      failed: "bg-purple-neon/20 text-purple-neon border border-purple-neon/50",
     };
 
     const status = participant.status?.toLowerCase() || "active";
@@ -44,7 +45,7 @@ export default function LeaderboardRow({
 
   return (
     <div
-      className="glassmorphism rounded-xl p-5 mb-3 transition-all duration-300 hover:shadow-2xl hover:scale-[1.01] hover:border-[#852467] group"
+      className="glassmorphism rounded-xl p-5 mb-3 transition-all duration-300 hover:shadow-glow-cyan-intense hover:scale-[1.01] hover:border-cyan-neon/50 group border border-transparent"
       style={{
         animation: rankChange !== 0 ? "slideIn 0.5s ease-out" : undefined,
       }}
@@ -52,7 +53,7 @@ export default function LeaderboardRow({
       <div className="flex items-start gap-4">
         <div
           className={`flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center font-bold text-xl ${getRankBadge(
-            participant.rank || index + 4
+            participant.rank || index + 4,
           )}`}
         >
           {participant.rank || index + 4}
@@ -64,22 +65,19 @@ export default function LeaderboardRow({
               <div>
                 <div className="min-w-0 max-w-full">
                   <h3
-                    className="text-xl font-bold text-[#F7F7FA] break-words hyphens-auto"
+                    className="text-xl font-bold text-white break-words hyphens-auto"
                     style={{ wordBreak: "break-word" }}
                   >
-                    {participant.name}
+                    {participant.teamName}
                   </h3>
-                  <span className="text-xs text-[#498099] block">
-                    {participant.uid}
-                  </span>
                 </div>
               </div>
               {rankChange !== 0 && (
                 <div
                   className={`flex items-center gap-1 text-xs font-semibold px-2 py-1 rounded-full ${
                     rankChange > 0
-                      ? "bg-[#00C896]/20 text-[#00C896]"
-                      : "bg-[#FF4757]/20 text-[#FF4757]"
+                      ? "bg-cyan-neon/20 text-cyan-neon"
+                      : "bg-orange-neon/20 text-orange-neon"
                   }`}
                 >
                   {rankChange > 0 ? (
@@ -96,7 +94,7 @@ export default function LeaderboardRow({
                 </div>
               )}
               {rankChange === 0 && participant.previous_rank && (
-                <Minus className="w-4 h-4 text-[#E8E8EE]" />
+                <Minus className="w-4 h-4 text-white/60" />
               )}
             </div>
             <span
@@ -106,9 +104,9 @@ export default function LeaderboardRow({
             </span>
           </div>
 
-          <div className="flex items-center gap-4 text-sm text-[#E8E8EE]">
+          <div className="flex items-center gap-4 text-sm text-white">
             {participant.department && (
-              <span className="px-2 py-1 bg-[#498099]/20 text-[#30CDB7] rounded-md font-medium">
+              <span className="px-2 py-1 bg-cyan-soft/10 text-cyan-neon rounded-md font-medium border border-cyan-soft/30">
                 {participant.department}
               </span>
             )}

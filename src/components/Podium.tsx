@@ -23,21 +23,21 @@ export default function Podium({ topThree }: PodiumProps) {
     const medals = {
       1: {
         icon: Trophy,
-        color: "text-[#FFD700]",
+        color: "text-[#ffd700]",
         label: "CHAMPION",
-        gradient: "from-[#3B0855] via-[#EE2270] to-[#FD8083]",
+        gradient: "from-[#ffd700] to-[#ffb800]",
       },
       2: {
         icon: Medal,
-        color: "text-[#C0C0C0]",
+        color: "text-[#c0c0c0]",
         label: "RUNNER-UP",
-        gradient: "from-[#852467] to-[#498099]",
+        gradient: "from-[#c0c0c0] to-[#a8a8a8]",
       },
       3: {
         icon: Medal,
-        color: "text-[#CD7F32]",
+        color: "text-[#ff6b35]",
         label: "THIRD PLACE",
-        gradient: "from-[#498099] to-[#30CDB7]",
+        gradient: "from-[#ff6b35] to-[#ff8c00]",
       },
     };
 
@@ -45,14 +45,14 @@ export default function Podium({ topThree }: PodiumProps) {
     const Icon = medal.icon;
 
     const podiumGradients = {
-      1: "from-[#FFD700] to-[#FFA500]",
-      2: "from-[#C0C0C0] to-[#A8A8A8]",
-      3: "from-[#CD7F32] to-[#B8722A]",
+      1: "from-[#ffd700] to-[#ffb800]",
+      2: "from-[#c0c0c0] to-[#a8a8a8]",
+      3: "from-[#ff6b35] to-[#ff8c00]",
     };
 
     return (
       <div className="flex flex-col items-center">
-        <div className="glassmorphism relative rounded-2xl shadow-2xl p-6 w-full max-w-xs transition-all duration-500 hover:shadow-[0_0_30px_rgba(48,205,183,0.3)] hover:-translate-y-3">
+        <div className="glassmorphism relative rounded-2xl shadow-2xl p-5 w-full max-w-2xl transition-all duration-500 hover:shadow-glow-cyan-intense hover:-translate-y-3 border border-cyan-neon/40">
           <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
             <div
               className={`w-20 h-20 rounded-full flex items-center justify-center bg-gradient-to-br ${
@@ -65,20 +65,17 @@ export default function Podium({ topThree }: PodiumProps) {
 
           <div className="mt-8 text-center">
             <div
-              className={`text-xs font-bold text-[#30CDB7] mb-2 tracking-wider`}
+              className={`text-xs font-bold text-cyan-soft mb-2 tracking-wider`}
             >
               {medal.label}
             </div>
             <div className="mb-4">
               <h3
-                className="text-2xl font-bold text-[#F7F7FA] break-words hyphens-auto"
+                className="text-2xl font-bold text-white break-words hyphens-auto"
                 style={{ wordBreak: "break-word" }}
               >
-                {participant.name}
+                {participant.teamName}
               </h3>
-              <div className="text-xs text-[#498099] mt-1">
-                {participant.uid}
-              </div>
             </div>
 
             <div
@@ -102,9 +99,9 @@ export default function Podium({ topThree }: PodiumProps) {
             </div>
 
             {participant.department && (
-              <div className="bg-[#498099]/20 rounded-lg p-3">
-                <div className="text-xs text-[#E8E8EE]">Department</div>
-                <div className="text-sm font-semibold text-[#30CDB7] truncate">
+              <div className="bg-cyan-soft/10 rounded-lg p-3 border border-cyan-soft/30">
+                <div className="text-xs text-white">Department</div>
+                <div className="text-sm font-semibold text-cyan-soft truncate">
                   {participant.department}
                 </div>
               </div>
@@ -113,7 +110,7 @@ export default function Podium({ topThree }: PodiumProps) {
         </div>
 
         <div
-          className={`mt-6 ${height} w-36 bg-gradient-to-t ${
+          className={`mt-2 ${height} w-36 bg-gradient-to-t ${
             podiumGradients[position as keyof typeof podiumGradients]
           } rounded-t-2xl shadow-2xl flex items-center justify-center relative overflow-hidden`}
         >
@@ -127,17 +124,17 @@ export default function Podium({ topThree }: PodiumProps) {
   };
 
   return (
-    <div className="flex items-end justify-center gap-8 mb-16 flex-wrap lg:flex-nowrap px-4">
+    <div className="flex items-end justify-center gap-6 mb-8 flex-wrap lg:flex-nowrap px-4">
       <div className="order-2 lg:order-1">
-        <PodiumCard participant={second} position={2} height="h-36" />
+        <PodiumCard participant={second} position={2} height="h-24" />
       </div>
 
       <div className="order-1 lg:order-2">
-        <PodiumCard participant={first} position={1} height="h-52" />
+        <PodiumCard participant={first} position={1} height="h-36" />
       </div>
 
       <div className="order-3">
-        <PodiumCard participant={third} position={3} height="h-28" />
+        <PodiumCard participant={third} position={3} height="h-20" />
       </div>
     </div>
   );

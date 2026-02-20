@@ -76,7 +76,7 @@ function App() {
     // First apply filters
     if (searchTerm) {
       filtered = filtered.filter((p) =>
-        p.name.toLowerCase().includes(searchTerm.toLowerCase())
+        p.teamName.toLowerCase().includes(searchTerm.toLowerCase()),
       );
     }
 
@@ -106,7 +106,7 @@ function App() {
   }, [participants, searchTerm, selectedDepartment]);
 
   const departments = Array.from(
-    new Set(participants.map((p) => p.department || "General").filter(Boolean))
+    new Set(participants.map((p) => p.department || "General").filter(Boolean)),
   ) as string[];
 
   const topThree = filteredParticipants.slice(0, 3);
@@ -114,7 +114,7 @@ function App() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#1A1A2E] py-8 px-4">
+      <div className="min-h-screen bg-navy-deep py-8 px-4">
         <div className="max-w-7xl mx-auto">
           <LoadingSkeleton />
         </div>
@@ -123,15 +123,15 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#1A1A2E] py-8 px-4">
+    <div className="min-h-screen bg-navy-deep py-8 px-4">
       <div className="max-w-7xl mx-auto">
         {error && (
-          <div className="glassmorphism border-2 border-[#FF4757] text-[#FF4757] px-6 py-4 rounded-xl mb-6 shadow-lg">
+          <div className="glassmorphism border-2 border-orange-neon text-orange-neon px-6 py-4 rounded-xl mb-6 shadow-lg">
             <strong className="font-bold">Error: </strong>
             <span className="block sm:inline">{error}</span>
             <button
               onClick={fetchParticipants}
-              className="mt-3 px-4 py-2 bg-[#FF4757] text-white rounded-lg hover:bg-[#FF4757]/80 transition-colors font-semibold"
+              className="mt-3 px-4 py-2 bg-orange-neon text-white rounded-lg hover:bg-orange-neon/80 transition-colors font-semibold"
             >
               Retry
             </button>
@@ -153,9 +153,9 @@ function App() {
         />
 
         {filteredParticipants.length === 0 ? (
-          <div className="glassmorphism text-center py-16 rounded-2xl">
-            <p className="text-2xl text-[#E8E8EE]">No participants found</p>
-            <p className="text-sm text-[#E8E8EE]/60 mt-2">
+          <div className="glassmorphism text-center py-16 rounded-2xl border border-cyan-neon/20">
+            <p className="text-2xl text-white">No participants found</p>
+            <p className="text-sm text-white/60 mt-2">
               Try adjusting your search or filters
             </p>
           </div>
@@ -166,10 +166,10 @@ function App() {
             {remaining.length > 0 && (
               <div className="mt-8">
                 <div className="flex items-center justify-between mb-6 px-2">
-                  <h2 className="text-3xl font-bold text-[#F7F7FA]">
+                  <h2 className="text-3xl font-bold text-white">
                     Full Rankings
                   </h2>
-                  <div className="text-sm text-[#E8E8EE]/60">
+                  <div className="text-sm text-white/60">
                     {remaining.length} participants
                   </div>
                 </div>

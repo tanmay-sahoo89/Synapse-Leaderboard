@@ -10,13 +10,13 @@ const corsHeaders = {
 interface LeaderboardEntry {
   id: string;
   rank: number;
-  name: string;
+  teamName: string;
   score: number;
   maxPoints: number;
   percentage: number;
   status: string;
   department?: string;
-  time_taken?: number;
+  time_taken?: number | null;
 }
 
 Deno.serve(async (req: Request) => {
@@ -37,9 +37,12 @@ Deno.serve(async (req: Request) => {
 
     const supabase = createClient(supabaseUrl, supabaseKey);
 
+    // Explicitly select columns to ensure team_name is included
     const { data: participants, error } = await supabase
       .from("participants")
-      .select("*")
+      .select(
+        "id, team_name, score, time_taken, attempts, department, rank, previous_rank, created_at, updated_at",
+      )
       .order("score", { ascending: false })
       .order("time_taken", { ascending: true });
 
@@ -60,7 +63,7 @@ Deno.serve(async (req: Request) => {
             ...corsHeaders,
             "Content-Type": "application/json",
           },
-        }
+        },
       );
     }
 
@@ -71,8 +74,7 @@ Deno.serve(async (req: Request) => {
 
       return {
         id: row.id,
-        uid: row.registration_number || "N/A",
-        name: row.name,
+        teamName: row.team_name || "Unknown Team",
         score: Number(row.score) || 0,
         maxPoints,
         percentage,
@@ -94,7 +96,7 @@ Deno.serve(async (req: Request) => {
           ...corsHeaders,
           "Content-Type": "application/json",
         },
-      }
+      },
     );
   } catch (error) {
     console.error("Error fetching leaderboard data:", error);
@@ -113,7 +115,7 @@ Deno.serve(async (req: Request) => {
           ...corsHeaders,
           "Content-Type": "application/json",
         },
-      }
+      },
     );
   }
 });
