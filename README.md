@@ -106,7 +106,7 @@ IEEE Leaderboard/
 
 - Rank position
 - Name
-- Score out of maximum points (200)
+- Score out of maximum points (50)
 - Percentage completion
 - Department
 - Status indicator
@@ -223,7 +223,7 @@ Retrieves the current leaderboard data.
       "rank": 1,
       "name": "John Doe",
       "score": 180,
-      "maxPoints": 200,
+      "maxPoints": 50,
       "percentage": 90,
       "status": "active",
       "department": "Engineering",

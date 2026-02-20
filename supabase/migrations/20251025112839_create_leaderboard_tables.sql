@@ -88,14 +88,14 @@ CREATE TRIGGER update_participants_updated_at
 
 -- Insert sample data for demonstration
 INSERT INTO participants (name, score, time_taken, department, rank, previous_rank) VALUES
-  ('Alice Johnson', 950, 180, 'Computer Science', 1, 2),
-  ('Bob Smith', 920, 195, 'Electrical Engineering', 2, 1),
-  ('Carol Williams', 890, 170, 'Computer Science', 3, 3),
-  ('David Brown', 860, 210, 'Mechanical Engineering', 4, 5),
-  ('Emma Davis', 850, 188, 'Computer Science', 5, 4),
-  ('Frank Miller', 820, 225, 'Electrical Engineering', 6, 6),
-  ('Grace Wilson', 800, 200, 'Computer Science', 7, 8),
-  ('Henry Taylor', 780, 240, 'Mechanical Engineering', 8, 7),
-  ('Ivy Anderson', 750, 195, 'Electrical Engineering', 9, 9),
-  ('Jack Thomas', 720, 250, 'Computer Science', 10, 10)
+  ('Alice Johnson', 48, 180, 'Computer Science', 1, 2),
+  ('Bob Smith', 46, 195, 'Electrical Engineering', 2, 1),
+  ('Carol Williams', 45, 170, 'Computer Science', 3, 3),
+  ('David Brown', 43, 210, 'Mechanical Engineering', 4, 5),
+  ('Emma Davis', 42, 188, 'Computer Science', 5, 4),
+  ('Frank Miller', 41, 225, 'Electrical Engineering', 6, 6),
+  ('Grace Wilson', 40, 200, 'Computer Science', 7, 8),
+  ('Henry Taylor', 39, 240, 'Mechanical Engineering', 8, 7),
+  ('Ivy Anderson', 38, 195, 'Electrical Engineering', 9, 9),
+  ('Jack Thomas', 36, 250, 'Computer Science', 10, 10)
 ON CONFLICT DO NOTHING;

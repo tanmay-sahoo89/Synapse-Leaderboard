@@ -68,7 +68,7 @@ Deno.serve(async (req: Request) => {
     }
 
     const entries: LeaderboardEntry[] = participants.map((row, index) => {
-      const maxPoints = 200;
+      const maxPoints = 50;
       const percentage =
         maxPoints > 0 ? Math.round((row.score / maxPoints) * 100) : 0;
 
